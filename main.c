@@ -2,7 +2,8 @@
 
 void alx_sig_handler(int sig);
 int alx_execute(char **args, char **front);
-
+int hist;
+char *name;
 /**
  * alx_sig_handler - Prints a new prompt upon a signal.
  * @sig: The signal.
