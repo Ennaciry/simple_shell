@@ -33,15 +33,15 @@ int alx_execute(char **args, char **front)
 	if (command[0] != '/' && command[0] != '.')
 	{
 		flag = 1;
-		command = get_location(command);
+		command = alx_get_location(command);
 	}
 
 	if (!command || (access(command, F_OK) == -1))
 	{
 		if (errno == EACCES)
-			ret = (create_error(args, 126));
+			ret = (alx_create_error(args, 126));
 		else
-			ret = (create_error(args, 127));
+			ret = (alx_create_error(args, 127));
 	}
 	else
 	{
@@ -57,7 +57,7 @@ int alx_execute(char **args, char **front)
 		{
 			execve(command, args, environ);
 			if (errno == EACCES)
-				ret = (create_error(args, 126));
+				ret = (alx_create_error(args, 126));
 			alx_free_env();
 			alx_free_args(args, front);
 			alx_free_alias_list(aliases);
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 	if (!isatty(STDIN_FILENO))
 	{
 		while (ret != END_OF_FILE && ret != EXIT)
-			ret = handle_args(exe_ret);
+			ret = alx_handle_args(exe_ret);
 		alx_free_env();
 		alx_free_alias_list(aliases);
 		return (*exe_ret);
@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 	while (1)
 	{
 		write(STDOUT_FILENO, prompt, 2);
-		ret = handle_args(exe_ret);
+		ret = alx_handle_args(exe_ret);
 		if (ret == END_OF_FILE || ret == EXIT)
 		{
 			if (ret == END_OF_FILE)

@@ -114,8 +114,8 @@ int alx_shellby_cd(char **args, char __attribute__((__unused__)) **front)
 		}
 		else
 		{
-			if (stat(args[0], &dir) == 0 && S_ISDIR(dir.st_mode)
-					&& ((dir.st_mode & S_IXUSR) != 0))
+			if (stat(args[0], &dir) == 0 && S_ISDIR(dir.st_mode) 
+			&& ((dir.st_mode & S_IXUSR) != 0))
 				chdir(args[0]);
 			else
 			{
@@ -170,19 +170,19 @@ int alx_shellby_help(char **args, char __attribute__((__unused__)) **front)
 {
 	if (!args[0])
 		alx_help_all();
-	else if (_strcmp(args[0], "alias") == 0)
+	else if (alx_strcmp(args[0], "alias") == 0)
 		alx_help_alias();
-	else if (_strcmp(args[0], "cd") == 0)
+	else if (alx_strcmp(args[0], "cd") == 0)
 		alx_help_cd();
-	else if (_strcmp(args[0], "exit") == 0)
+	else if (alx_strcmp(args[0], "exit") == 0)
 		alx_help_exit();
-	else if (_strcmp(args[0], "env") == 0)
+	else if (alx_strcmp(args[0], "env") == 0)
 		alx_help_env();
-	else if (_strcmp(args[0], "setenv") == 0)
+	else if (alx_strcmp(args[0], "setenv") == 0)
 		alx_help_setenv();
-	else if (_strcmp(args[0], "unsetenv") == 0)
+	else if (alx_strcmp(args[0], "unsetenv") == 0)
 		alx_help_unsetenv();
-	else if (_strcmp(args[0], "help") == 0)
+	else if (alx_strcmp(args[0], "help") == 0)
 		alx_help_help();
 	else
 		write(STDERR_FILENO, name, alx_strlen(name));

@@ -49,7 +49,7 @@ char *alx_get_location(char *command)
 }
 
 /**
- * alx_fill_path_dir - Copies path and replaces leading/sandwiched/trailing
+ * alx_fill_path_dir - Copies path but also replaces leading/sandwiched/trailing
  *		   colons (:) with current working directory.
  * @path: The colon-separated list of directories.
  *
@@ -126,7 +126,7 @@ list_t *alx_get_path_dir(char *path)
 
 	for (index = 0; dirs[index]; index++)
 	{
-		if (add_node_end(&head, dirs[index]) == NULL)
+		if (alx_add_node_end(&head, dirs[index]) == NULL)
 		{
 			alx_free_list(head);
 			free(dirs);
